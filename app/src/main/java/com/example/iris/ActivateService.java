@@ -1,9 +1,12 @@
 package com.example.iris;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -28,25 +31,25 @@ public class ActivateService extends AppCompatActivity {
     LocationListener locationListener;
 
     //starting foreground service and sensor detector
-    public void startService(){
+    public void startService() {
 
         sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sm.registerListener(sensorListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) , SensorManager.SENSOR_DELAY_NORMAL);
+        sm.registerListener(sensorListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
 
         accelerationLast = SensorManager.GRAVITY_EARTH;
         accelerationValue = SensorManager.GRAVITY_EARTH;
         shake = 0.00f;
 
-        Intent intent = new Intent(this , Foreground.class);
+        Intent intent = new Intent(this, Foreground.class);
         startService(intent);
     }
 
     //stoping foreground service and detector
-    public void stopService(){
+    public void stopService() {
 
         onStop();
 
-        Intent intent = new Intent(this , Foreground.class);
+        Intent intent = new Intent(this, Foreground.class);
         stopService(intent);
     }
 
@@ -67,7 +70,8 @@ public class ActivateService extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startService();;
+                startService();
+                ;
             }
         });
 
@@ -79,14 +83,13 @@ public class ActivateService extends AppCompatActivity {
         });
 
         //declaring location manager and listener
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
 
-                double lattitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                Log.i("location" , lattitude+" "+longitude);
+                Log.i("location","location has been chnaged");
+                //Toast.makeText(ActivateService.this,"location has been changed", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -104,6 +107,24 @@ public class ActivateService extends AppCompatActivity {
 
             }
         };
+
+        if (ActivityCompat.checkSelfPermission(ActivateService.this , Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+        else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if (lastKnownLocation != null){
+                updateLocationInfo(lastKnownLocation);
+            }
+
+        }
+    }
+
+    //updating location when changed
+    private void updateLocationInfo(Location lastKnownLocation) {
+
 
     }
 
