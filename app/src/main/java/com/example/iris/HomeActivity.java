@@ -30,6 +30,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent1 = new Intent(HomeActivity.this , ActivateService.class);
+                startActivity(intent1);
+            }
+        });
+
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
