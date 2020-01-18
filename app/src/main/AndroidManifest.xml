@@ -4,12 +4,13 @@
 
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
-        android:required="true"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
 
@@ -20,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivateService"></activity>
+        <activity android:name=".ShowNumberActivity"></activity>
+        <activity android:name=".UpdateActivity" />
+        <activity android:name=".ActivateService" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity">
@@ -35,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <data android:scheme="sms" />
-                <data android:scheme="smsto"/>
+                <data android:scheme="smsto" />
                 <data android:scheme="file" />
             </intent-filter>
         </activity>
