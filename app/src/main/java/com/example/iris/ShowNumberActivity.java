@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,7 @@ public class ShowNumberActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> mArrayList=new  ArrayList<>();
     String uID;
+    public static String numbers = "9340002654;";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +60,12 @@ public class ShowNumberActivity extends AppCompatActivity {
                     //  System.out.println(ans);
                     //   mArrayList=value.getmNum();
                     mArrayList.add(value);
+                    numbers += value+";";
 
 
                 }
                 mListView.setAdapter(arrayAdapter);
+                Toast.makeText(ShowNumberActivity.this , numbers , Toast.LENGTH_LONG).show();
             }
 
             @Override

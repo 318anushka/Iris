@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import static com.example.iris.ShowNumberActivity.numbers;
+
 public class ActivateService extends AppCompatActivity {
 
     private SensorManager sm;
@@ -152,12 +154,14 @@ public class ActivateService extends AppCompatActivity {
              shake = shake*0.9f + diff;
 
              if(shake>12){
-                 Toast.makeText(ActivateService.this , "emergency it is" , Toast.LENGTH_LONG).show();
+
                  Intent intent = new Intent(Intent.ACTION_SENDTO);
                  // This ensures only SMS apps respond
-                 intent.setData(Uri.parse("smsto:" + "9694625490"));
+                 String sendTo = numbers.substring(0,numbers.length());
+                 intent.setData(Uri.parse("smsto:" + sendTo));
                  intent.putExtra("sms_body", "My Location is -  Lattitude:" + " " + lattitude + "\n" + "Longitude:" + " " + longitude);
                  intent.putExtra("exit_on_sent", true);
+                 Toast.makeText(ActivateService.this , sendTo , Toast.LENGTH_LONG).show();
                  if (intent.resolveActivity(getPackageManager()) != null) {
 
                      startActivityForResult(intent, 1);
