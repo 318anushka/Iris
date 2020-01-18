@@ -38,6 +38,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent new_intent=new Intent(HomeActivity.this,TipsActivity.class);
+                startActivity(new_intent);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent new_intent=new Intent(HomeActivity.this,HelpActivity.class);
+                startActivity(new_intent);
+            }
+        });
+
+
 
     }
 
