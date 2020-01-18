@@ -14,6 +14,7 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,9 @@ public class ActivateService extends AppCompatActivity {
     LocationManager locationManager;
     LocationListener locationListener;
 
+    double lattitude;
+    double longitude;
+
     //starting foreground service and sensor detector
     public void startService() {
 
@@ -44,7 +48,7 @@ public class ActivateService extends AppCompatActivity {
         startService(intent);
     }
 
-    //stoping foreground service and detector
+    //stopping foreground service and detector
     public void stopService() {
 
         onStop();
@@ -125,8 +129,8 @@ public class ActivateService extends AppCompatActivity {
     //updating location when changed
     private void updateLocationInfo(Location lastKnownLocation) {
 
-        double lattitude = lastKnownLocation.getLatitude();
-        double longitude = lastKnownLocation.getLongitude();
+        lattitude = lastKnownLocation.getLatitude();
+        longitude = lastKnownLocation.getLongitude();
 
         Toast.makeText(this , lattitude+" "+longitude,Toast.LENGTH_LONG).show();
 
@@ -149,6 +153,19 @@ public class ActivateService extends AppCompatActivity {
 
              if(shake>12){
                  Toast.makeText(ActivateService.this , "emergency it is" , Toast.LENGTH_LONG).show();
+                 Intent intent = new Intent(Intent.ACTION_SENDTO);
+                 // This ensures only SMS apps respond
+                 intent.setData(Uri.parse("smsto:" + "9694625490"));
+                 intent.putExtra("sms_body", "My Location is -  Lattitude:" + " " + lattitude + "\n" + "Longitude:" + " " + longitude);
+                 intent.putExtra("exit_on_sent", true);
+                 if (intent.resolveActivity(getPackageManager()) != null) {
+
+                     startActivityForResult(intent, 1);
+
+                 } else {
+                     // Log.i("Error" , "failed");
+                     Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_LONG).show();
+                 }
              }
 
         }
