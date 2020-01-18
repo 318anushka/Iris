@@ -22,16 +22,30 @@ public class ActivateService extends AppCompatActivity {
 
     public void startService(){
 
+        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sm.registerListener(sensorListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) , SensorManager.SENSOR_DELAY_NORMAL);
+
+        accelerationLast = SensorManager.GRAVITY_EARTH;
+        accelerationValue = SensorManager.GRAVITY_EARTH;
+        shake = 0.00f;
+
         Intent intent = new Intent(this , Foreground.class);
         startService(intent);
     }
 
     public void stopService(){
 
+        onStop();
+
         Intent intent = new Intent(this , Foreground.class);
         stopService(intent);
     }
 
+    @Override
+    protected void onStop() {
+        sm.unregisterListener(sensorListener);
+        super.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +69,7 @@ public class ActivateService extends AppCompatActivity {
             }
         });
 
-        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sm.registerListener(sensorListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) , SensorManager.SENSOR_DELAY_NORMAL);
 
-        accelerationLast = SensorManager.GRAVITY_EARTH;
-        accelerationValue = SensorManager.GRAVITY_EARTH;
-        shake = 0.00f;
 
     }
 
