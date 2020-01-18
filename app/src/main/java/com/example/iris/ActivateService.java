@@ -71,7 +71,7 @@ public class ActivateService extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startService();
-                ;
+
             }
         });
 
@@ -124,6 +124,11 @@ public class ActivateService extends AppCompatActivity {
 
     //updating location when changed
     private void updateLocationInfo(Location lastKnownLocation) {
+
+        double lattitude = lastKnownLocation.getLatitude();
+        double longitude = lastKnownLocation.getLongitude();
+
+        Toast.makeText(this , lattitude+" "+longitude,Toast.LENGTH_LONG).show();
 
 
     }
