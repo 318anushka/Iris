@@ -8,6 +8,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,10 @@ public class ActivateService extends AppCompatActivity {
     private float accelerationLast;
     private float shake;
 
+    LocationManager locationManager;
+    LocationListener locationListener;
+
+    //starting foreground service and sensor detector
     public void startService(){
 
         sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -33,6 +39,7 @@ public class ActivateService extends AppCompatActivity {
         startService(intent);
     }
 
+    //stoping foreground service and detector
     public void stopService(){
 
         onStop();
@@ -73,6 +80,7 @@ public class ActivateService extends AppCompatActivity {
 
     }
 
+    //on shaking device
     private final SensorEventListener sensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
