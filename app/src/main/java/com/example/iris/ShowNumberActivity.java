@@ -1,5 +1,6 @@
 package com.example.iris;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -41,5 +45,30 @@ public class ShowNumberActivity extends AppCompatActivity {
 
 
         arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mArrayList);
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap:dataSnapshot.getChildren()) {
+                    //  String key=dataSnapshot.getKey();
+                    String value = snap.getValue(String.class);
+
+                    //Log.i("This","value");
+                    // for(String  ans :value.getmNum()){
+                    //  System.out.println(ans);
+                    //   mArrayList=value.getmNum();
+                    mArrayList.add(value);
+
+
+                }
+                mListView.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
