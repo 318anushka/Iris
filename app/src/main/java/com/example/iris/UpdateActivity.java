@@ -2,6 +2,7 @@ package com.example.iris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +55,17 @@ public class UpdateActivity extends AppCompatActivity {
 
 
 
+        });
+
+
+        show_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent new_intent=new Intent(UpdateActivity.this,ShowNumberActivity.class);
+                startActivity(new_intent);
+
+            }
         });
     }
 }
