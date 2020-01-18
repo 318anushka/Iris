@@ -51,17 +51,17 @@ public class ActivateService extends AppCompatActivity {
     //stopping foreground service and detector
     public void stopService() {
 
-        onStop();
+        //onStop();
 
         Intent intent = new Intent(this, Foreground.class);
         stopService(intent);
     }
 
-    @Override
+   /* @Override
     protected void onStop() {
         sm.unregisterListener(sensorListener);
         super.onStop();
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
