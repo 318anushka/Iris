@@ -3,6 +3,7 @@ package com.example.iris;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,5 +35,25 @@ public class UpdateActivity extends AppCompatActivity {
 
         mref=new Firebase("https://iris-8e542.firebaseio.com/");
         uID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String num=mTextView.getText().toString().trim();
+
+                Firebase mRefChild=mref.child(uID);
+                mRefChild.push().setValue(num);
+
+                mTextView.setText("");
+
+
+
+            }
+
+
+
+        });
     }
 }
