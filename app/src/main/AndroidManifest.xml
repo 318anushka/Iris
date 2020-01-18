@@ -21,8 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateActivity"></activity>
-        <activity android:name=".ShowNumberActivity" />
+        <activity android:name=".ShowNumberActivity"></activity>
+        <activity android:name=".UpdateActivity" />
         <activity android:name=".ActivateService" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegistrationActivity" />
