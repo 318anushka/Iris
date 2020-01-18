@@ -10,15 +10,17 @@
 
     <Button
         android:id="@+id/activateservice"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="activate service"
+        android:layout_marginTop="30dp"
         tools:layout_editor_absoluteX="131dp"
         tools:layout_editor_absoluteY="43dp" />
 
     <Button
         android:id="@+id/stayconnected"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="stay connected"
         tools:layout_editor_absoluteX="131dp"
@@ -26,7 +28,8 @@
 
     <Button
         android:id="@+id/updatecontacts"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="update contacts"
         tools:layout_editor_absoluteX="121dp"
@@ -34,7 +37,8 @@
 
     <Button
         android:id="@+id/tips"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="tips"
         tools:layout_editor_absoluteX="161dp"
@@ -42,7 +46,8 @@
 
     <Button
         android:id="@+id/help"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="help"
         tools:layout_editor_absoluteX="161dp"
