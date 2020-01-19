@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Iris</string>
+    <string name="agora_app_id">6dfd2fbdb21b4813a1cabd2fa73a0822</string>
+    <string name="agora_access_token">0066dfd2fbdb21b4813a1cabd2fa73a0822IAA3EJbdAmBNNHNWeGgpjcnP310Nd34arPIo098Bvugpa3AV99gAAAAAEAD6S9BLojglXgEAAQCkOCVe</string>
 </resources>

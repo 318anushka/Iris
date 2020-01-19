@@ -26,7 +26,7 @@ public class ShowNumberActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> mArrayList=new  ArrayList<>();
     String uID;
-    public static String numbers = "9340002654;";
+    public static String numbers = "112;100;";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

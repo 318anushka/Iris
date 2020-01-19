@@ -34,8 +34,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent1 = new Intent(HomeActivity.this , ActivateService.class);
-                startActivity(intent1);
+                Intent intent2 = new Intent(HomeActivity.this , StayConnected.class);
+                startActivity(intent2);
             }
         });
 
